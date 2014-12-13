@@ -1,0 +1,9 @@
+sonos:
+  volume: 25
+  tts_lang: nl
+  webserver_path: /usr/share/nginx/www/
+  webserver_port: 8000
+gmail:
+  username: you@gmail.com
+  password: changeme
+  label: Notification
