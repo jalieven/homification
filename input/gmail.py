@@ -5,11 +5,11 @@ import logging
 
 class Gmail:
     def __init__(self, username=None, password=None, label=None):
+        self.log = logging.getLogger('gmail')
+        self.log.setLevel(logging.INFO)
         self.username = username
         self.password = password
         self.label = label
-        self.log = logging.getLogger('gmail')
-        self.log.setLevel(logging.INFO)
 
     def process_mailbox(self, M):
         rv, data = M.search(None, "ALL")
@@ -30,7 +30,7 @@ class Gmail:
             messages.append(subject)
         return messages
 
-    def check_gmail(self):
+    def check(self):
         M = imaplib.IMAP4_SSL('imap.gmail.com')
         try:
             M.login(self.username, self.password)
@@ -39,8 +39,8 @@ class Gmail:
                 rv, data = M.select(self.label)
                 if rv == 'OK':
                     return self.process_mailbox(M)
-        except imaplib.IMAP4.error:
-            self.log.error("GMail login failed!")
+        except imaplib.IMAP4.error as e:
+            self.log.error("GMail login failed! " + e.message)
         finally:
             M.expunge()
             M.close()

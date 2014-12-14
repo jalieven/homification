@@ -6,4 +6,7 @@ sonos:
 gmail:
   username: you@gmail.com
   password: changeme
-  label: Notification
+  label: "Notifications"
+smappee:
+  username: you
+  password: changeme

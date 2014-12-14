@@ -53,4 +53,4 @@ class Sonos:
                     if zone.group.coordinator.player_name != zone.player_name:
                         print zone.player_name + ' joining ' + zone.group.coordinator.player_name
                         zone.join(group_coordinator)
-
+        return notifications
